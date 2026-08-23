@@ -3,127 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solara — slow living, beautifully made</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #19312d;
-            --muted: #66746f;
-            --cream: #f7f6f0;
-            --paper: #fffef9;
-            --mint: #c9dfd3;
-            --coral: #e9775e;
-            --line: rgba(25, 49, 45, .16);
-        }
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { margin: 0; color: var(--ink); background: var(--cream); font-family: Manrope, sans-serif; }
-        a { color: inherit; text-decoration: none; }
-        .nav, .hero, .collection, .story, footer { max-width: 1240px; margin: auto; }
-        .nav { height: 90px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-size: 22px; font-weight: 800; letter-spacing: -.07em; }
-        .logo span { color: var(--coral); }
-        .nav-links { display: flex; gap: 34px; font-size: 13px; font-weight: 700; }
-        .nav-links a:hover { color: var(--coral); }
-        .nav-cta { border-bottom: 1px solid var(--ink); padding-bottom: 5px; font-size: 13px; font-weight: 700; }
-        .hero { min-height: 590px; padding: 56px 28px 84px; display: grid; grid-template-columns: 1fr 1.06fr; gap: 68px; align-items: center; }
-        .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--coral); font: 500 11px 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
-        .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); }
-        h1 { max-width: 550px; margin: 22px 0 25px; font-size: clamp(48px, 6vw, 82px); line-height: .98; letter-spacing: -.09em; }
-        .hero-copy > p { max-width: 410px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
-        .actions { display: flex; gap: 14px; margin-top: 34px; align-items: center; }
-        .button { padding: 15px 22px; border: 1px solid var(--ink); background: var(--ink); color: white; font-size: 12px; font-weight: 800; transition: transform .2s, background .2s; }
-        .button:hover { background: var(--coral); border-color: var(--coral); transform: translateY(-3px); }
-        .text-link { margin-left: 10px; font-size: 12px; font-weight: 800; }
-        .text-link::after { content: '↗'; margin-left: 8px; color: var(--coral); font-size: 16px; }
-        .hero-art { position: relative; min-height: 480px; }
-        .hero-art img { width: 85%; height: 480px; object-fit: cover; display: block; margin-left: auto; filter: saturate(.78); }
-        .art-note { position: absolute; bottom: 18px; left: 0; padding: 17px 19px; background: var(--coral); color: white; font-size: 12px; line-height: 1.45; }
-        .art-note strong { display: block; margin-bottom: 4px; font-size: 18px; letter-spacing: -.06em; }
-        .circle-stamp { position: absolute; right: 0; top: -24px; width: 94px; height: 94px; display: grid; place-items: center; border: 1px solid var(--ink); border-radius: 50%; background: var(--cream); font: 500 10px 'DM Mono', monospace; text-align: center; transform: rotate(12deg); }
-        .marquee { overflow: hidden; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--mint); }
-        .marquee p { margin: 0; white-space: nowrap; animation: slide 18s linear infinite; font: 500 12px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; }
-        .marquee span { margin: 0 28px; color: var(--coral); }
-        @keyframes slide { to { transform: translateX(-30%); } }
-        .collection { padding: 104px 28px 112px; }
-        .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 36px; }
-        h2 { margin: 12px 0 0; font-size: clamp(32px, 4vw, 55px); line-height: 1; letter-spacing: -.08em; }
-        .section-head p { max-width: 245px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
-        .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-        .product { background: var(--paper); }
-        .product-image { overflow: hidden; height: 320px; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-        .product:hover img { transform: scale(1.05); }
-        .product-info { display: flex; justify-content: space-between; padding: 19px 18px 21px; }
-        .product-info strong { font-size: 14px; }
-        .product-info small { display: block; margin-top: 7px; color: var(--muted); font: 11px 'DM Mono', monospace; }
-        .price { font: 500 13px 'DM Mono', monospace; }
-        .story { display: grid; grid-template-columns: 1fr 1fr; background: var(--ink); color: white; }
-        .story-image { min-height: 440px; background: url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=85') center/cover; opacity: .85; }
-        .story-copy { padding: 70px 64px; align-self: center; }
-        .story-copy .eyebrow { color: var(--mint); }
-        .story-copy .eyebrow::before { background: var(--mint); }
-        .story-copy h2 { max-width: 390px; margin-bottom: 24px; }
-        .story-copy p { max-width: 370px; color: #c6d1cb; font-size: 14px; line-height: 1.75; }
-        footer { padding: 70px 28px 34px; display: flex; justify-content: space-between; align-items: end; }
-        footer .logo { font-size: 30px; }
-        footer p { margin: 0; color: var(--muted); font: 11px 'DM Mono', monospace; }
-        @media (max-width: 760px) {
-            .nav { height: 76px; }
-            .nav-links { display: none; }
-            .hero { grid-template-columns: 1fr; gap: 42px; padding-top: 48px; }
-            .hero-art, .hero-art img { min-height: 360px; height: 360px; }
-            .hero-art img { width: 90%; }
-            .section-head { display: block; }
-            .section-head p { margin-top: 20px; }
-            .products { grid-template-columns: 1fr; }
-            .product-image { height: 330px; }
-            .story { grid-template-columns: 1fr; }
-            .story-image { min-height: 300px; }
-            .story-copy { padding: 52px 28px 60px; }
-            footer { display: block; }
-            footer p { margin-top: 28px; }
-        }
-    </style>
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="nav">
-        <a class="logo" href="#top">solara<span>•</span></a>
-        <nav class="nav-links" aria-label="Основная навигация">
-            <a href="#collection">Коллекция</a>
-            <a href="#story">Философия</a>
-            <a href="#contact">Контакты</a>
-        </nav>
-        <a class="nav-cta" href="#collection">Смотреть изделия</a>
-    </header>
-    <main id="top">
-        <section class="hero">
-            <div class="hero-copy">
-                <div class="eyebrow">Дом, в который хочется возвращаться</div>
-                <h1>Красивые вещи для <em>тихой</em> жизни.</h1>
-                <p>Solara создает предметы с характером: из натуральных материалов, с уважением к ритму дня и маленьким радостям.</p>
-                <div class="actions"><a class="button" href="#collection">Открыть коллекцию</a><a class="text-link" href="#story">О нас</a></div>
-            </div>
-            <div class="hero-art">
-                <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1100&q=85" alt="Керамическая чашка на солнечном столе">
-                <div class="circle-stamp">MADE<br>WITH<br>CARE</div>
-                <div class="art-note"><strong>Morning ritual</strong>Керамика, которая<br>становится личной.</div>
-            </div>
-        </section>
-        <div class="marquee"><p>slow objects <span>✳</span> honest materials <span>✳</span> everyday beauty <span>✳</span> slow objects <span>✳</span> honest materials <span>✳</span></p></div>
-        <section class="collection" id="collection">
-            <div class="section-head"><div><div class="eyebrow">Избранное</div><h2>Для твоего<br>ритма.</h2></div><p>Три простых предмета, с которых начинается более внимательное утро.</p></div>
-            <div class="products">
-                <article class="product"><div class="product-image"><img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85" alt="Керамическая кружка ручной работы"></div><div class="product-info"><div><strong>Forma Mug</strong><small>stoneware · 320 ml</small></div><span class="price">€ 28</span></div></article>
-                <article class="product"><div class="product-image"><img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=85" alt="Теплый свет настольной лампы"></div><div class="product-info"><div><strong>Halo Lamp</strong><small>linen · warm light</small></div><span class="price">€ 84</span></div></article>
-                <article class="product"><div class="product-image"><img src="https://images.unsplash.com/photo-1605651202774-7d573fd9f12b?auto=format&fit=crop&w=900&q=85" alt="Натуральное мыло и полотенце"></div><div class="product-info"><div><strong>Sunday Set</strong><small>soap · cotton · cedar</small></div><span class="price">€ 42</span></div></article>
-            </div>
-        </section>
-        <section class="story" id="story"><div class="story-image" aria-label="Светлая комната с растениями"></div><div class="story-copy"><div class="eyebrow">Наша идея</div><h2>Меньше шума.<br>Больше смысла.</h2><p>Мы верим, что хороший дизайн не должен кричать. Он просто остается рядом: служит долго, стареет красиво и каждый день напоминает замедлиться.</p><a class="text-link" href="#contact">Узнать больше</a></div></section>
-    </main>
-    <footer id="contact"><div class="logo">solara<span>•</span></div><p>© 2026 Solara Studio — made for slower days</p></footer>
-</body>
-</html>
 
+    <header>
+        <h1>Welcome to My Web Page</h1>
+    </header>
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <p>This is a brief introduction about myself.</p>
+        </section>
+        <section>
+            <h2>My Projects</h2>
+            <ul>
+                <li>Project 1</li>
+                <li>Project 2</li>
+                <li>Project 3</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Web Page</p>
+    </footer>
